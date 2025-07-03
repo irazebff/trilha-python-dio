@@ -10,6 +10,7 @@ def menu():
     [nc]\tNova conta
     [lc]\tListar contas
     [nu]\tNovo usuário
+    [lu]\tListar usuários
     [q]\tSair
     => """
     return input(textwrap.dedent(menu))
@@ -75,6 +76,12 @@ def criar_usuario(usuarios):
 
     print("=== Usuário criado com sucesso! ===")
 
+def listar_usuarios(usuarios):
+    for usuario in usuarios:
+        print("=" * 100)
+        for chave, valor in usuario.items():
+            print(f"{chave.capitalize()}:\t{valor}")
+        print("=" * 100)
 
 def filtrar_usuario(cpf, usuarios):
     usuarios_filtrados = [usuario for usuario in usuarios if usuario["cpf"] == cpf]
@@ -139,6 +146,9 @@ def main():
 
         elif opcao == "nu":
             criar_usuario(usuarios)
+        
+        elif opcao == "lu":
+            listar_usuarios(usuarios)
 
         elif opcao == "nc":
             numero_conta = len(contas) + 1
